@@ -1,9 +1,9 @@
-import './App.css'
 import MyComponent from './MyComponent'
 import AuthContext from './createContext';
+import './App.css'
 
 function App() {
-  const username = 'kim0';
+  const username = 'Kim0';
 
   return (
     <AuthContext.Provider value={username}>

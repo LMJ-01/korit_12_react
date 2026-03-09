@@ -1,13 +1,12 @@
-import './App.css'
-import MyList from './MyList'
+import MyForm2 from './MyForm2.jsx'
+import MyForm3 from './MyForm3.jsx'
 
-function App() {
+export default function App() {
 
-  return (
+  return(
     <>
-      <MyList />
+      <MyForm3></MyForm3><br /><br />
+      <MyForm2 />
     </>
-  )
+  );
 }
-
-export default App

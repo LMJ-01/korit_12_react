@@ -1,10 +1,9 @@
-import Hello from "./Hello";
+import Hello from "./Hello.jsx";
 
 export default function MyComponent() {
-    
-    return(
-        <>
-       <Hello />
-        </>
-    );
+  return(
+    <>
+      <Hello />
+    </>
+  );
 }

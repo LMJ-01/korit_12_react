@@ -18,8 +18,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <QueryClientProvider client={queryClient}>
-        <Carlist></Carlist>
-
+        <Carlist />
       </QueryClientProvider>
       </Container>
     </>

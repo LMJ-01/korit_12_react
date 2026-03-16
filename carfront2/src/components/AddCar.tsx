@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogTitle } from "@mui/material";
+import { Dialog, DialogActions, DialogTitle, Button } from "@mui/material";
 import { Car } from '../types';
 import { useState } from "react";
 import { addCar } from "../api/carapi";
@@ -10,14 +10,14 @@ export default function AddCar() {
     const queryClient = useQueryClient();
 
     const { mutate } = useMutation(addCar, {
-        onSuccess : () => {
+        onSuccess: () => {
             queryClient.invalidateQueries(['cars']);
         },
         onError: err => console.log(err),
-        });
+    });
 
-    const [ open, setOpen ] = useState(false);
-    const [ car, setCar ] = useState<Car>({
+    const [open, setOpen] = useState(false);
+    const [car, setCar] = useState<Car>({
         brand: '',
         model: '',
         color: '',
@@ -26,36 +26,35 @@ export default function AddCar() {
         price: 0
     });
 
-    // 한줄 짜리라서 필요없을 것 같지만
     const handleClickOpen = () => setOpen(true);
     const handleClickClose = () => setOpen(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCar({...car, [event.target.name] : event.target.value})}
+        setCar({ ...car, [event.target.name]: event.target.value })
+    }
 
     const handleSave = () => {
-       mutate(car);     //  얘가 carapi.ts에 있는 함수에 해당합니다.
-       setCar({
-        brand: '',
-        model: '',
-        color: '',
-        registrationNumber: '',
-        modelYear: 0,
-        price: 0
-       });
-       handleClickClose();
+        mutate(car);
+        setCar({
+            brand: '',
+            model: '',
+            color: '',
+            registrationNumber: '',
+            modelYear: 0,
+            price: 0
+        });
+        handleClickClose();
     }
-  
 
-    return(
+    return (
         <>
-            <button onClick={handleClickOpen}>New Car</button>
+            <Button onClick={handleClickOpen}>New Car</Button>
             <Dialog open={open} onClose={handleClickClose}>
                 <DialogTitle>New Car</DialogTitle>
-                <CarDialogContent car={car} handleChange={handleChange}/>
+                <CarDialogContent car={car} handleChange={handleChange} />
                 <DialogActions>
-                    <button onClick={handleClickClose}>Cancel</button>
-                    <button onClick={handleSave}>Save</button>
+                    <Button onClick={handleClickClose}>Cancel</Button>
+                    <Button onClick={handleSave}>Save</Button>
                 </DialogActions>
             </Dialog>
         </>

@@ -67,11 +67,11 @@ export default function EditCar({ cardata } : FormProps) {
 
     return(
         <>
-            <Button onClick={handleClickOpen}>
+            <Button size='small' onClick={handleClickOpen}>
                 Edit
             </Button>
             <Dialog open={open} onClose={handleClickClose}>
-                <DialogTitle>Edit Car</DialogTitle>
+                <DialogTitle>Edit CAr</DialogTitle>
                 <CarDialogContent car={car} handleChange={handleChange} />
                 <DialogActions>
                     <Button onClick={handleClickClose}>Cancel</Button>

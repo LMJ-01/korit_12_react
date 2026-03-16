@@ -1,7 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCars, deleteCar } from "../api/carapi";
 import { DataGrid, GridColDef, GridCellParams, GridToolbar } from "@mui/x-data-grid";
-import { Snackbar, Button } from "@mui/material";
+import { Snackbar, IconButton, Tooltip } from "@mui/material";
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import { useState } from "react";
 import AddCar from "./AddCar";
 import EditCar from "./EditCar";
@@ -33,15 +34,17 @@ export default function Carlist() {
             filterable: false,
             disableColumnMenu: true,
             renderCell: (params: GridCellParams) => (
-                <Button 
-                    onClick={() => {
-                        if(confirm(`${params.row.brand}의 ${params.row.color} ${params.row.model}을 삭제하시겠습니까?`)) {
-                            mutate(params.row._links.self.href)
-                        }    
-                    }}
+                <Tooltip title='delete car'>
+                    <IconButton aria-label='delete' size = 'small'
+                        onClick={() => {
+                            if(confirm(`${params.row.brand}의 ${params.row.color} ${params.row.model}을 삭제하시겠습니까?`)) {
+                                mutate(params.row._links.self.href);
+                            }
+                        }}
                     >
-                        Delete
-                    </Button>
+                        <DeleteForeverRoundedIcon  fontSize="small"/>
+                    </IconButton>
+                </Tooltip>
             )
         },
         
@@ -72,13 +75,13 @@ export default function Carlist() {
         return(
             <>
                 <AddCar />
-                    <DataGrid 
-                        rows={data}
-                        columns={columns}
-                        disableRowSelectionOnClick={true}
-                        getRowId={row => row._links.self.href}
-                        slots={ {toolbar: GridToolbar} }
-                    />
+                <DataGrid 
+                    rows={data}
+                    columns={columns}
+                    disableRowSelectionOnClick={true}
+                    getRowId={row => row._links.self.href}
+                    slots={ {toolbar: GridToolbar} }
+                />
                 <Snackbar
                     open={open}
                     autoHideDuration={2000}

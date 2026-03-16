@@ -8,7 +8,6 @@ type DialogFormProps = {
 }
 
 export default function CarDialogContent( {car, handleChange } : DialogFormProps) {
-
     return(
         <>
             <DialogContent>
@@ -23,7 +22,6 @@ export default function CarDialogContent( {car, handleChange } : DialogFormProps
                 <input type="number" placeholder="ModelYear" name="modelYear" value={car.modelYear} onChange={handleChange}/><br />
 
                 <input type="number" placeholder="Price" name="price" value={car.price} onChange={handleChange}/><br />
-
             </DialogContent>
         </>
     );
